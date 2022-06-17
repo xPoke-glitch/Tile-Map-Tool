@@ -7,7 +7,19 @@ using UnityEditor;
 public partial class MapEditor : EditorWindow
 {
     private Material _material;
-    private int[,] _tileMatrix = new int[30,20];
+    private Tile[,] _tileMatrix = new Tile[30,20];
+
+    private void InitializeMatrix()
+    {
+        for(int i = 0; i < _tileMatrix.GetLength(0); i++)
+        {
+            for(int j = 0; j < _tileMatrix.GetLength(1); j++)
+            {
+                _tileMatrix[i, j] = new Tile();
+            }
+        }
+    }
+
     private void DrawGrid()
     {
         // Begin to draw a horizontal layout, using the helpBox EditorStyle
@@ -33,6 +45,18 @@ public partial class MapEditor : EditorWindow
             // colour black as the current OpenGL drawing colour, and draw a quad covering
             // the dimensions of the layoutRectangle.
             OpenGLHelper.DrawRectangle(new Vector2Int(0, 0), layoutRectangle.width, layoutRectangle.height);
+
+            // Draw Rectangle Matrix
+            for (int i = 0; i < _tileMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < _tileMatrix.GetLength(1); j++)
+                {
+                    if(_tileMatrix[i,j].TileObject != null)
+                    {
+                        OpenGLHelper.DrawRectangle(new Vector2Int(i * 10, j * 10), 10, 10, _tileMatrix[i,j].Color);
+                    }
+                }
+            }
 
             // Start drawing in OpenGL Lines, to draw the lines of the grid.
             GL.Begin(GL.LINES);

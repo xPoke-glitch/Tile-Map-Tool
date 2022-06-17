@@ -11,6 +11,12 @@ public partial class MapEditor : EditorWindow
         public Color Color { get; private set; }
         public GameObject TileObject { get; private set; }
 
+        public Tile()
+        {
+            this.Color = Color.black;
+            this.TileObject = null;
+        }
+
         public Tile(Color color, GameObject gameObject)
         {
             this.Color = color;
@@ -74,8 +80,7 @@ public partial class MapEditor : EditorWindow
         // Add Button
         if (GUILayout.Button("Add Tile"))
         {
-
-           
+            _tileMatrix[_tilePoint.x, _tilePoint.y] = _optionsDictionary[_options[_selectedIndex]];
         }
 
         // Show where the Tile will be

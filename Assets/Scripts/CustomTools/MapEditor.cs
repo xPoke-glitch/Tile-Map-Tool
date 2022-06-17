@@ -19,6 +19,8 @@ public partial class MapEditor : EditorWindow
         // Find the "Hidden/Internal-Colored" shader, and cache it for use.
         _material = new Material(Shader.Find("Hidden/Internal-Colored"));
 
+        InitializeMatrix();
+
         PopulateDropDownOptions();
     }
 
