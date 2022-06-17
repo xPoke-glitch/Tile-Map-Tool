@@ -7,7 +7,7 @@ using UnityEditor;
 public partial class MapEditor : EditorWindow
 {
     private Material _material;
-
+    private int[,] _tileMatrix = new int[30,20];
     private void DrawGrid()
     {
         // Begin to draw a horizontal layout, using the helpBox EditorStyle
