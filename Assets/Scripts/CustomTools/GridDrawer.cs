@@ -51,7 +51,7 @@ public partial class MapEditor : EditorWindow
             {
                 for (int j = 0; j < _tileMatrix.GetLength(1); j++)
                 {
-                    if(_tileMatrix[i,j].TileObject != null)
+                    if(_tileMatrix[i,j].TileAssets != null)
                     {
                         OpenGLHelper.DrawRectangle(new Vector2Int(i * 10, j * 10), 10, 10, _tileMatrix[i,j].Color);
                     }

@@ -9,18 +9,21 @@ public partial class MapEditor : EditorWindow
     public class Tile
     {
         public Color Color { get; private set; }
-        public GameObject TileObject { get; private set; }
+        public GameObject TileAssets { get; private set; }
+        public GameObject TileObject { get; set; }
 
         public Tile()
         {
             this.Color = Color.black;
+            this.TileAssets = null;
             this.TileObject = null;
         }
 
         public Tile(Color color, GameObject gameObject)
         {
             this.Color = color;
-            this.TileObject = gameObject;
+            this.TileAssets = gameObject;
+            this.TileObject = null;
         }
     }
 
@@ -80,7 +83,12 @@ public partial class MapEditor : EditorWindow
         // Add Button
         if (GUILayout.Button("Add Tile"))
         {
-            _tileMatrix[_tilePoint.x, _tilePoint.y] = _optionsDictionary[_options[_selectedIndex]];
+            if (_tileMatrix[_tilePoint.x, _tilePoint.y].TileObject != null) 
+            {
+                DestroyImmediate(_tileMatrix[_tilePoint.x, _tilePoint.y].TileObject);
+            }
+            _tileMatrix[_tilePoint.x, _tilePoint.y] = new Tile(_optionsDictionary[_options[_selectedIndex]].Color, _optionsDictionary[_options[_selectedIndex]].TileAssets);
+            _tileMatrix[_tilePoint.x, _tilePoint.y].TileObject = Instantiate(_tileMatrix[_tilePoint.x, _tilePoint.y].TileAssets, new Vector3(_tilePoint.x*2, 0, -_tilePoint.y*2), Quaternion.identity);
         }
 
         // Show where the Tile will be
