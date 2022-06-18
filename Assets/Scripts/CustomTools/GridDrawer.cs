@@ -7,17 +7,33 @@ using UnityEditor;
 public partial class MapEditor : EditorWindow
 {
     private Material _material;
-    private Tile[,] _tileMatrix = new Tile[30,20];
+    private MapEditorTile[,] _tileMatrix = new MapEditorTile[30,20];
+    private MapEditorData _data;
 
     private void InitializeMatrix()
     {
-        for(int i = 0; i < _tileMatrix.GetLength(0); i++)
+        _data = AssetDatabase.LoadAssetAtPath<MapEditorData>("Assets/Scripts/CustomTools/MapEditorData.asset");
+        for (int i = 0; i < _tileMatrix.GetLength(0); i++)
         {
             for(int j = 0; j < _tileMatrix.GetLength(1); j++)
             {
-                _tileMatrix[i, j] = new Tile();
+                _tileMatrix[i, j] = new MapEditorTile();
             }
         }
+        if(_data.Tiles == null)
+        {
+            Debug.Log("Null");
+            _data.Tiles = _tileMatrix;
+        }
+        else
+        {
+            _tileMatrix = _data.Tiles;
+        }
+    }
+
+    private void SaveMatrix()
+    {
+        _data.Tiles = _tileMatrix;
     }
 
     private void DrawGrid()

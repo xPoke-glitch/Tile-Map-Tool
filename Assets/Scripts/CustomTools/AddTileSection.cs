@@ -6,38 +6,18 @@ using UnityEditor;
 #if UNITY_EDITOR
 public partial class MapEditor : EditorWindow
 {
-    public class Tile
-    {
-        public Color Color { get; private set; }
-        public GameObject TileAssets { get; private set; }
-        public GameObject TileObject { get; set; }
-
-        public Tile()
-        {
-            this.Color = Color.black;
-            this.TileAssets = null;
-            this.TileObject = null;
-        }
-
-        public Tile(Color color, GameObject gameObject)
-        {
-            this.Color = color;
-            this.TileAssets = gameObject;
-            this.TileObject = null;
-        }
-    }
-
+    
     private int _selectedIndex = 0;
     
     private Vector2Int _tilePoint = new Vector2Int();
 
     private List<string> _options = new List<string>();
-    private Dictionary<string, Tile> _optionsDictionary = new Dictionary<string, Tile>();
+    private Dictionary<string, MapEditorTile> _optionsDictionary = new Dictionary<string, MapEditorTile>();
 
     private void PopulateDropDownOptions()
     {
-        _optionsDictionary.Add("ForestTile", new Tile(Color.green, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ForestTile.prefab")));
-        _optionsDictionary.Add("DesertTile", new Tile(Color.yellow, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DesertTile.prefab")));
+        _optionsDictionary.Add("ForestTile", new MapEditorTile(Color.green, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ForestTile.prefab")));
+        _optionsDictionary.Add("DesertTile", new MapEditorTile(Color.yellow, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DesertTile.prefab")));
 
         foreach (string option in _optionsDictionary.Keys)
         {
@@ -112,7 +92,7 @@ public partial class MapEditor : EditorWindow
             {
                 DestroyImmediate(_tileMatrix[_tilePoint.x, _tilePoint.y].TileObject);
             }
-            _tileMatrix[_tilePoint.x, _tilePoint.y] = new Tile(_optionsDictionary[_options[_selectedIndex]].Color, _optionsDictionary[_options[_selectedIndex]].TileAssets);
+            _tileMatrix[_tilePoint.x, _tilePoint.y] = new MapEditorTile(_optionsDictionary[_options[_selectedIndex]].Color, _optionsDictionary[_options[_selectedIndex]].TileAssets);
             _tileMatrix[_tilePoint.x, _tilePoint.y].TileObject = Instantiate(_tileMatrix[_tilePoint.x, _tilePoint.y].TileAssets, new Vector3(_tilePoint.x*2, 0, -_tilePoint.y*2), Quaternion.identity);
         }
 
@@ -122,7 +102,7 @@ public partial class MapEditor : EditorWindow
             if (_tileMatrix[_tilePoint.x, _tilePoint.y].TileObject != null)
             {
                 DestroyImmediate(_tileMatrix[_tilePoint.x, _tilePoint.y].TileObject);
-                _tileMatrix[_tilePoint.x, _tilePoint.y] = new Tile();
+                _tileMatrix[_tilePoint.x, _tilePoint.y] = new MapEditorTile();
             }
         }
 

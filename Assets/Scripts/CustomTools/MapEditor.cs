@@ -24,6 +24,11 @@ public partial class MapEditor : EditorWindow
         PopulateDropDownOptions();
     }
 
+    private void OnDisable()
+    {
+        SaveMatrix();
+    }
+
     void OnGUI()
     {
         DrawGrid();
