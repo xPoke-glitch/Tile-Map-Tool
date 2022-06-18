@@ -32,11 +32,6 @@ class MapEditorSettings : ScriptableObject
         {
             return;
         }
-        if(Tiles == null)
-        {
-            Debug.Log("Tiles NULL");
-            return;
-        }
 
         settings.Tiles = new Table<MapEditorTile>(tiles);
 
