@@ -12,7 +12,7 @@ public partial class MapEditor : EditorWindow
 
     private void InitializeMatrix()
     {
-        _data = AssetDatabase.LoadAssetAtPath<MapEditorData>("Assets/Scripts/CustomTools/MapEditorData.asset");
+        _data = AssetDatabase.LoadAssetAtPath<MapEditorData>("Assets/Scripts/CustomTools/MapEditor/MapEditorData.asset");
         for (int i = 0; i < _tileMatrix.GetLength(0); i++)
         {
             for(int j = 0; j < _tileMatrix.GetLength(1); j++)
@@ -22,7 +22,6 @@ public partial class MapEditor : EditorWindow
         }
         if(_data.Tiles == null)
         {
-            Debug.Log("Null");
             _data.Tiles = _tileMatrix;
         }
         else
