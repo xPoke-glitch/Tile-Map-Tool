@@ -8,7 +8,7 @@ class MapEditorSettings : ScriptableObject
 {
     public const string k_MyCustomSettingsPath = "Assets/Editor/MapEditorSettings.asset";
 
-    public MapEditorTile[,] Tiles;
+    public Table<MapEditorTile> Tiles;
 
     internal static MapEditorSettings GetOrCreateSettings()
     {
@@ -16,14 +16,9 @@ class MapEditorSettings : ScriptableObject
         if (settings == null)
         {
             settings = ScriptableObject.CreateInstance<MapEditorSettings>();
-            settings.Tiles = new MapEditorTile[30, 20];
-            for(int i = 0; i<settings.Tiles.GetLength(0); i++)
-            {
-                for(int j=0; j<settings.Tiles.GetLength(1); j++)
-                {
-                    settings.Tiles[i, j] = new MapEditorTile();
-                }
-            }
+            
+            settings.Tiles = new Table<MapEditorTile>(30,20);
+            
             AssetDatabase.CreateAsset(settings, k_MyCustomSettingsPath);
             AssetDatabase.SaveAssets();
         }
@@ -42,13 +37,9 @@ class MapEditorSettings : ScriptableObject
             Debug.Log("Tiles NULL");
             return;
         }
-        for (int i = 0; i < settings.Tiles.GetLength(0); i++)
-        {
-            for (int j = 0; j < settings.Tiles.GetLength(1); j++)
-            {
-                settings.Tiles[i, j] = new MapEditorTile(tiles[i, j].Color, tiles[i, j].TileAssets);
-            }
-        }
+
+        settings.Tiles = new Table<MapEditorTile>(tiles);
+
         EditorUtility.SetDirty(settings);
         AssetDatabase.SaveAssets();
     }

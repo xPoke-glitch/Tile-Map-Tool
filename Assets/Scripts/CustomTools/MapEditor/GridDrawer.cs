@@ -22,8 +22,9 @@ public partial class MapEditor : EditorWindow
         _settings = MapEditorSettings.GetOrCreateSettings();
         if(_settings != null && _settings.Tiles!=null)
         {
-            _tileMatrix = _settings.Tiles;
+            _tileMatrix = _settings.Tiles.GetMatrix();
         }
+       
     }
 
     private void SaveMatrix()

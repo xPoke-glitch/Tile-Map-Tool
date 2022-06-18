@@ -5,22 +5,29 @@ using UnityEngine;
 [System.Serializable]
 public class MapEditorTile
 {
-    public Color Color { get; private set; }
-    public GameObject TileAssets { get; private set; }
-    public GameObject TileObject { get; set; }
+    public Color Color { get => _color; }
+    public GameObject TileAssets { get => _tileAssets; }
+    public GameObject TileObject { get => _tileObject; set { _tileObject = value; } }
+    
+    [SerializeField]
+    private Color _color;
+    [SerializeField]
+    private GameObject _tileAssets;
+    [SerializeField]
+    private GameObject _tileObject;
 
     public MapEditorTile()
     {
-        this.Color = Color.black;
-        this.TileAssets = null;
-        this.TileObject = null;
+        _color = Color.black;
+        _tileAssets = null;
+        _tileObject = null;
     }
 
     public MapEditorTile(Color color, GameObject gameObject)
     {
-        this.Color = color;
-        this.TileAssets = gameObject;
-        this.TileObject = null;
+        _color = color;
+        _tileAssets = gameObject;
+        _tileObject = null;
     }
 }
 
