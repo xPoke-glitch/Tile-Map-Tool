@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f614976e3e033e4ea4107a9760a3b73, type: 3}
-  m_Name: MapEditorData
+  m_Script: {fileID: 11500000, guid: 82aa385b62021024280eb964be67bf64, type: 3}
+  m_Name: MapEditorSettings
   m_EditorClassIdentifier: 

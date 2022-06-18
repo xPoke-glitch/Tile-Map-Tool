@@ -8,11 +8,10 @@ public partial class MapEditor : EditorWindow
 {
     private Material _material;
     private MapEditorTile[,] _tileMatrix = new MapEditorTile[30,20];
-    private MapEditorData _data;
+    private MapEditorSettings _settings;
 
     private void InitializeMatrix()
     {
-        _data = AssetDatabase.LoadAssetAtPath<MapEditorData>("Assets/Scripts/CustomTools/MapEditor/MapEditorData.asset");
         for (int i = 0; i < _tileMatrix.GetLength(0); i++)
         {
             for(int j = 0; j < _tileMatrix.GetLength(1); j++)
@@ -20,19 +19,17 @@ public partial class MapEditor : EditorWindow
                 _tileMatrix[i, j] = new MapEditorTile();
             }
         }
-        if(_data.Tiles == null)
+        _settings = MapEditorSettings.GetOrCreateSettings();
+        if(_settings != null && _settings.Tiles!=null)
         {
-            _data.Tiles = _tileMatrix;
-        }
-        else
-        {
-            _tileMatrix = _data.Tiles;
+            _tileMatrix = _settings.Tiles;
         }
     }
 
     private void SaveMatrix()
     {
-        _data.Tiles = _tileMatrix;
+        Debug.Log("SAVE " + (_tileMatrix == null));
+        _settings.SetTiles(_tileMatrix);
     }
 
     private void DrawGrid()
