@@ -49,6 +49,8 @@ class MapEditorSettings : ScriptableObject
                 settings.Tiles[i, j] = new MapEditorTile(tiles[i, j].Color, tiles[i, j].TileAssets);
             }
         }
+        EditorUtility.SetDirty(settings);
+        AssetDatabase.SaveAssets();
     }
 
     internal static SerializedObject GetSerializedSettings()
