@@ -11,7 +11,7 @@ The tool is a simple level editor for tile based maps.
 The tool is a level editor for tile based maps.
 
 There is a grid that displays the current grid in the scene and a square pointer that you can move.
-The pointer display where you will place the tile in the grid. 
+The pointer displays where you will place the tile in the grid. 
 
 You can choose which Tile to place from the dropdown menu, each tile has a different color grid.
 
