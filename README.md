@@ -15,6 +15,8 @@ The pointer displays where you will place the tile in the grid.
 
 You can choose which Tile to place from the dropdown menu, each tile has a different color grid.
 
+In order to draw or remove a tile you press respectively the draw or remove button.
+
 <img src="https://github.com/xPoke-glitch/Tile-Map-Tool/blob/main/Screenshots/draw-tile.gif" width="750">
 
 You can also add a new tile by name (the tile prefab must be in the Assets/Prefabs folder)
