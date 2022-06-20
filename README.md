@@ -23,6 +23,7 @@ You can also add a new tile by name (the tile prefab must be in the Assets/Prefa
 
 <img src="https://github.com/xPoke-glitch/Tile-Map-Tool/blob/main/Screenshots/add-tile.gif" width="750">
 
+Note: All the changes (except for new tiles added,feature not developed yet for a matter of time) are saved when the Tool or Unity are closed
 ## Team
 
 **Developers**:
