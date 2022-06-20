@@ -32,7 +32,8 @@ public partial class MapEditor : EditorWindow
     void OnGUI()
     {
         DrawGrid();
-        DrawTilesDropDown();
+        DrawDrawTileSection();
+        DrawAddTileSection();
     }
 
 }
