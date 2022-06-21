@@ -31,4 +31,4 @@ Note: All the changes (except for new tiles added, feature not developed yet for
 * Cristian: https://github.com/xPoke-glitch / https://pokedev.itch.io/
 
 ## Other
-You can check the complete Unity Custom Tool package here: https://github.com/xPoke-glitch/Custom-Tools-Pack
+You can check the complete Unity Custom Tool package here: https://github.com/xPoke-glitch/Custom-Tools-Pack - A fully updated package of my tools
