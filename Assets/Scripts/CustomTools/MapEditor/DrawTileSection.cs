@@ -17,9 +17,6 @@ public partial class MapEditor : EditorWindow
     private void PopulateDropDownOptions()
     {
         _settings = MapEditorSettings.GetOrCreateSettings();
-
-       /* _optionsDictionary.Add("ForestTile", new MapEditorTile(Color.green, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ForestTile.prefab")));
-        _optionsDictionary.Add("DesertTile", new MapEditorTile(Color.yellow, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DesertTile.prefab")));*/
         
         for(int i = 0; i < _settings.TilePrefabsAdded.Count; i++)
         {
@@ -104,6 +101,10 @@ public partial class MapEditor : EditorWindow
             }
             _tileMatrix[_tilePoint.x, _tilePoint.y] = new MapEditorTile(_optionsDictionary[_options[_selectedIndex]].Color, _optionsDictionary[_options[_selectedIndex]].TileAssets);
             _tileMatrix[_tilePoint.x, _tilePoint.y].TileObject = Instantiate(_tileMatrix[_tilePoint.x, _tilePoint.y].TileAssets, new Vector3(_tilePoint.x*2, 0, -_tilePoint.y*2), Quaternion.identity);
+            if(!_tileMatrix[_tilePoint.x, _tilePoint.y].TileObject.GetComponent<TileFromTool>())
+            {
+                _tileMatrix[_tilePoint.x, _tilePoint.y].TileObject.AddComponent<TileFromTool>();
+            }
             EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
         }
 

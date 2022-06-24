@@ -25,12 +25,12 @@ public partial class MapEditor : EditorWindow
             _tileMatrix = _settings.Tiles.GetMatrix();
         }
 
-        GameTile[] tileObjs = FindObjectsOfType<GameTile>();
+        TileFromTool[] tileObjs = FindObjectsOfType<TileFromTool>();
         for (int i = 0; i < _tileMatrix.GetLength(0); i++)
         {
             for (int j = 0; j < _tileMatrix.GetLength(1); j++)
             {
-                foreach(GameTile tileObj in tileObjs)
+                foreach(TileFromTool tileObj in tileObjs)
                 {
                     if(tileObj.gameObject.transform.position.Equals(new Vector3(i * 2, 0, -j * 2)))
                     {

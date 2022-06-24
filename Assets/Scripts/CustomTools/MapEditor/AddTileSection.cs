@@ -19,7 +19,7 @@ public partial class MapEditor : EditorWindow
 
         _tileToAddName = EditorGUILayout.TextField(_tileToAddName);
         _tileToAddColor = EditorGUILayout.ColorField(_tileToAddColor);
-
+        _tileToAddColor.a = 1.0f;
         EditorGUILayout.EndHorizontal();
 
         if (GUILayout.Button("Add"))
