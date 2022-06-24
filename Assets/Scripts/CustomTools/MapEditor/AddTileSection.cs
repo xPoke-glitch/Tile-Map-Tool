@@ -35,8 +35,12 @@ public partial class MapEditor : EditorWindow
                     }
                     else
                     {
-                        _optionsDictionary.Add(_tileToAddName, new MapEditorTile(_tileToAddColor, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/" + _tileToAddName + ".prefab")));
+                        _settings = MapEditorSettings.GetOrCreateSettings();
+                        MapEditorTile tileTemp = new MapEditorTile(_tileToAddColor, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/" + _tileToAddName + ".prefab"));
+                        _optionsDictionary.Add(_tileToAddName, tileTemp);
                         _options.Add(_tileToAddName);
+
+                        _settings.AddTilePrefab(_tileToAddName, tileTemp);
 
                         _tileToAddColor = Color.black;
                         _tileToAddName = "";

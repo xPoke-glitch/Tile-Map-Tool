@@ -16,8 +16,15 @@ public partial class MapEditor : EditorWindow
 
     private void PopulateDropDownOptions()
     {
-        _optionsDictionary.Add("ForestTile", new MapEditorTile(Color.green, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ForestTile.prefab")));
-        _optionsDictionary.Add("DesertTile", new MapEditorTile(Color.yellow, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DesertTile.prefab")));
+        _settings = MapEditorSettings.GetOrCreateSettings();
+
+       /* _optionsDictionary.Add("ForestTile", new MapEditorTile(Color.green, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/ForestTile.prefab")));
+        _optionsDictionary.Add("DesertTile", new MapEditorTile(Color.yellow, AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/DesertTile.prefab")));*/
+        
+        for(int i = 0; i < _settings.TilePrefabsAdded.Count; i++)
+        {
+            _optionsDictionary.Add(_settings.TilePrefabNames[i], _settings.TilePrefabsAdded[i]);
+        }
 
         foreach (string option in _optionsDictionary.Keys)
         {
@@ -33,6 +40,9 @@ public partial class MapEditor : EditorWindow
 
         // DropDown
         _selectedIndex = EditorGUILayout.Popup(_selectedIndex, _options.ToArray());
+
+        if (_options.Count == 0)
+            return;
 
         // X - Y Labels
         EditorGUILayout.BeginHorizontal();

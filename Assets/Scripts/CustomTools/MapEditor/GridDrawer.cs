@@ -24,7 +24,6 @@ public partial class MapEditor : EditorWindow
         {
             _tileMatrix = _settings.Tiles.GetMatrix();
         }
-       
     }
 
     private void SaveMatrix()
